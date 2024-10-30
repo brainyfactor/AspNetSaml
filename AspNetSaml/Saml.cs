@@ -306,6 +306,11 @@ namespace Saml
 		/// </summary>
 		public bool ForceAuthn { get; set; }
 
+		/// <summary>
+		/// get or sets if IsPassive attribute is sent to IdP
+		/// </summary>
+		public bool IsPassive { get; set; }
+
 		[Obsolete("Obsolete, will be removed")]
 		public enum AuthRequestFormat
 		{
@@ -335,6 +340,8 @@ namespace Saml
 					xw.WriteAttributeString("AssertionConsumerServiceURL", _assertionConsumerServiceUrl);
 					if (ForceAuthn)
 						xw.WriteAttributeString("ForceAuthn", "true");
+					if (IsPassive)
+						xw.WriteAttributeString("IsPassive", "true");
 
 					xw.WriteStartElement("saml", "Issuer", "urn:oasis:names:tc:SAML:2.0:assertion");
 					xw.WriteString(_issuer);
